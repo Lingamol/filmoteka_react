@@ -1,26 +1,30 @@
-// import logo from "./logo.svg";
-import "./App.css";
-import Header from "./components/Header";
+import { Route, Routes } from 'react-router-dom';
+import './App.css';
+import Home from 'pages/Home';
+import Library from 'pages/Library';
+import NotFound from 'pages/Notfound';
+import Movies from 'pages/Movies';
+import About from 'pages/About';
+import AboutMe from 'components/AboutMe';
+import AboutTeam from 'components/AboutTeam';
+import SharedLayout from 'components/SharedLayout';
 
 function App() {
   return (
-    <Header />
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
+    <div>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/library" element={<Library />} />
+          <Route path="/movies/:id_movie" element={<Movies />} />
+          <Route path="/about" element={<About />}>
+            <Route path="me" element={<AboutMe />} />
+            <Route path="team" element={<AboutTeam />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 

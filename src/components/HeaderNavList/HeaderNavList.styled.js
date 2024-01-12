@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 import { colors, timingFunction, duration } from 'styles/stylesLayout';
 export const HeaderList = styled.ul`
   display: flex;
@@ -8,12 +9,15 @@ export const HeaderList = styled.ul`
   line-height: 1.17;
   text-transform: uppercase;
 `;
-export const ListItem = styled.li`
+// export const ListItem = styled.li`
+//   &:not(:last-of-type) {
+//     margin-right: 39px;
+//   }
+// `;
+export const StyledLink = styled(NavLink)`
   &:not(:last-of-type) {
     margin-right: 39px;
   }
-`;
-export const ListLink = styled.a`
   position: relative;
   color: ${colors.whiteColor};
 
