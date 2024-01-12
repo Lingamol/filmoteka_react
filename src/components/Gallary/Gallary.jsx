@@ -10,6 +10,8 @@ import {
 import {
   filmAddGenreList,
   filmAddUrl,
+  filmCheckImgUrl,
+  moviesAddYearRelease,
 } from 'helpers/functions-for-popular-gallery';
 import MovieCard from 'components/MovieCard';
 
@@ -23,9 +25,11 @@ const Gallary = () => {
       const results = await fetchData();
       const config = await fetchDataConfigAndGenre();
       const { genres, base_url } = config;
-      const movies = filmAddGenreList({ genres, results });
-
-      setMovies(filmAddUrl({ movies, base_url }));
+      let movies = filmAddGenreList({ genres, results });
+      movies = moviesAddYearRelease(movies);
+      movies = filmAddUrl({ movies, base_url });
+      movies = filmCheckImgUrl(movies);
+      setMovies(movies);
     };
     fetchMovies();
   }, []);

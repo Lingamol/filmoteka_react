@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const params = {
   api_key: 'd2c21f22a2d4ccc40e22a6b0b1329764',
-  // per_page: 40,
+  per_page: 40,
 };
 export const getGenre = async () => {
   try {

@@ -26,10 +26,10 @@ export const CardItem = styled.li`
     margin-right: 32px;
     margin-bottom: 32px;
 
-    &:nth-child(2n) {
+    &:nth-of-type(2n) {
       margin-right: 0;
     }
-    &:nth-last-child(-n + 2) {
+    &:nth-of-type(-n + 2) {
       margin-bottom: 0;
     }
   }
@@ -39,15 +39,15 @@ export const CardItem = styled.li`
     margin-right: 16px;
     margin-bottom: 32px;
 
-    &:nth-child(2n) {
+    &:nth-of-type(2n) {
       margin-right: 16px;
     }
 
-    &:nth-child(3n) {
+    &:nth-of-type(3n) {
       margin-right: 0;
     }
 
-    &:nth-last-child(3) {
+    &:nth-last-of-type(3) {
       margin-bottom: 0;
     }
   }
