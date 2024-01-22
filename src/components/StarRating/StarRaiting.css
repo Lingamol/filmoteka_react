@@ -1,0 +1,14 @@
+.star-rating {
+  position: relative;
+  display: inline-flex;
+}
+
+.colored {
+  display: inline-flex;
+  position: absolute;
+  width: 0;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}

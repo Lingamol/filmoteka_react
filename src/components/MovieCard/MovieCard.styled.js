@@ -1,11 +1,14 @@
 import styled from '@emotion/styled';
 
 export const CardItem = styled.li`
+  position: relative;
   list-style: none;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
   border-radius: 5px;
+  /* margin-left: auto;
+  margin-right: auto; */
   cursor: pointer;
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover {
@@ -29,9 +32,9 @@ export const CardItem = styled.li`
     &:nth-of-type(2n) {
       margin-right: 0;
     }
-    &:nth-of-type(-n + 2) {
+    /* &:nth-of-type(-n + 2) {
       margin-bottom: 0;
-    }
+    } */
   }
 
   @media screen and (min-width: 1280px) {
@@ -95,7 +98,15 @@ export const CardGenre = styled.span`
     line-height: 1.2;
   }
 `;
-
+export const CardYear = styled.span`
+  font-weight: 500;
+  line-height: 1.3;
+  color: #ff6b08;
+  @media screen and (min-width: 1280px) {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+`;
 // .card-set__genre,
 // .card-set__production-year {
 //   color: #ff6b08;
@@ -104,6 +115,7 @@ export const CardGenre = styled.span`
 export const CardDescription = styled.div`
   align-items: baseline;
   display: flex;
+  justify-content: space-between;
   padding-bottom: 2px;
   padding-left: 5px;
 `;
@@ -131,3 +143,8 @@ export const CardDescription = styled.div`
 //   display: flex;
 //   align-items: center;
 // }
+export const RatingWrapper = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+`;

@@ -1,12 +1,10 @@
 import { GallaryWrapper } from './Gallary.styled';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {
-  fetchData,
-  // getConfig,
-  // getGenre,
-  fetchDataConfigAndGenre,
-} from 'services/axios';
+import { useSelector } from 'react-redux';
+import { selectConfigObj, selectUrl } from '../../redux/config/selectors';
+import { selectMovies } from '../../redux/movies/selectors';
+// import { fetchData, fetchDataConfigAndGenre } from 'services/axios';
 import {
   filmAddGenreList,
   filmAddUrl,
@@ -14,33 +12,50 @@ import {
   moviesAddYearRelease,
 } from 'helpers/functions-for-popular-gallery';
 import MovieCard from 'components/MovieCard';
+import { useDispatch } from 'react-redux';
+import { fetchMovies } from '../../redux/movies/operations ';
 
 const Gallary = () => {
-  const [movies, setMovies] = useState(null);
-  // const [genres, setGenres] = useState(null);
-  // const [config, setConfig] = useState(null);
+  const { genresList, base_url } = useSelector(selectConfigObj);
+  const dispatch = useDispatch();
+  const movies = useSelector(selectMovies);
+
+  console.log('GenreList', base_url);
+  // const { secure_base_url } = ;
+  // const { base_url } = configData;
+
+  // console.log('GenreList', genresList);
+  // useEffect(() => {
+  //   console.log('Component created!');
+  //   const fetchMovies = async () => {
+  //     const results = await fetchData();
+  //     const config = await fetchDataConfigAndGenre();
+  //     const { genres, base_url } = config;
+  //     let movies = filmAddGenreList({ genres, results });
+  //     movies = moviesAddYearRelease(movies);
+  //     movies = filmAddUrl({ movies, base_url });
+  //     movies = filmCheckImgUrl(movies);
+  //     setMovies(movies);
+  //   };
+  //   fetchMovies();
+  // }, []);
   useEffect(() => {
-    console.log('Component created!');
-    const fetchMovies = async () => {
-      const results = await fetchData();
-      const config = await fetchDataConfigAndGenre();
-      const { genres, base_url } = config;
-      let movies = filmAddGenreList({ genres, results });
-      movies = moviesAddYearRelease(movies);
-      movies = filmAddUrl({ movies, base_url });
-      movies = filmCheckImgUrl(movies);
-      setMovies(movies);
-    };
-    fetchMovies();
-  }, []);
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
   if (!movies) {
     return;
   }
 
+  let moviesTemp = filmAddGenreList(genresList, movies);
+  moviesTemp = moviesAddYearRelease(moviesTemp);
+  moviesTemp = filmAddUrl(moviesTemp, base_url);
+  // moviesTemp = filmCheckImgUrl(moviesTemp);
+  // setMovies(moviesTemp);
+  // console.log('movies', moviesTemp);
   return (
     <GallaryWrapper>
-      {movies.map(film => (
+      {moviesTemp.map(film => (
         <MovieCard key={film.id} film={film} />
       ))}
     </GallaryWrapper>

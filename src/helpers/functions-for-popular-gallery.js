@@ -1,8 +1,8 @@
-export function moviesAddYearRelease(dataForModify) {
-  const { results } = dataForModify;
+export function moviesAddYearRelease(list) {
+  // const { results } = dataForModify;
 
-  const filmAddYearRelease = results.map(result => {
-    const { release_date } = result;
+  const filmAddYearRelease = list.map(item => {
+    const { release_date } = item;
     let releaseYear;
     if (release_date !== undefined) {
       if (release_date.length > 4) {
@@ -14,16 +14,16 @@ export function moviesAddYearRelease(dataForModify) {
       releaseYear = 'There is no info';
     }
     // releaseYear = release_date.slice(0, 4);
-    return { releaseYear, ...result };
+    return { releaseYear, ...item };
   });
   //   console.log('filmAddYearRelease', filmAddYearRelease);
-  return { results: filmAddYearRelease };
+  return filmAddYearRelease;
 }
 ////////////////////////////////////////////////////////////////////////////////
-export function filmAddGenreList(dataForModify) {
-  const { genres, results } = dataForModify;
-  console.log('dataForModify', results);
-  console.log('genres', genres);
+export function filmAddGenreList(genres, results) {
+  // const { genres, results } = dataForModify;
+  // console.log('dataForModify', results);
+  // console.log('genres', genres);
   const filmAddGenreList = results.map(result => {
     const { genre_ids } = result;
     const filmGenreList = genresList({ genre_ids, genres });
@@ -31,7 +31,7 @@ export function filmAddGenreList(dataForModify) {
   });
 
   //   console.log('filmAddGenreList', filmAddGenreList);
-  return { results: filmAddGenreList };
+  return filmAddGenreList;
 }
 function genresList(genreToFindData) {
   const { genre_ids, genres } = genreToFindData;
@@ -57,14 +57,14 @@ function genresById(genreToFind) {
     }
   }
 }
-export function filmAddUrl(dataForModify) {
-  const {
-    base_url,
-    movies: { results },
-  } = dataForModify;
-  //   console.log(' dataForModify', dataForModify);
-  const filmAddUrl = results.map(result => {
-    return { base_url, ...result };
+export function filmAddUrl(list, base_url) {
+  // const {
+  //   base_url,
+  //   movies: { results },
+  // } = dataForModify;
+  // //   console.log(' dataForModify', dataForModify);
+  const filmAddUrl = list.map(item => {
+    return { base_url, ...item };
   });
 
   //   console.log('filmAddUrl', filmAddUrl);

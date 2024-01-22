@@ -25,7 +25,7 @@ export const getGenre = async () => {
 
 export const fetchData = async () => {
   try {
-    console.log('request!');
+    // console.log('request!');
     const url = `https://api.themoviedb.org/3/trending/movie/day?&page=1`;
     const response = await axios.get(url, { params });
 
